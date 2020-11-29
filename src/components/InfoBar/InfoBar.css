@@ -26,3 +26,8 @@
 .onlineIcon {
   margin-right: 5%;
 }
+
+.onlineBtnOpen:hover{
+  text-decoration: underline; 
+
+}

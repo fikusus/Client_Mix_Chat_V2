@@ -6,6 +6,8 @@ import Messages from "../Messages/Messages";
 import InfoBar from "../InfoBar/InfoBar";
 import Input from "../Input/Input";
 import FileSpawn from "../FileSpawn/FileSpawn";
+import Modal from "react-modal";
+import _ from "lodash"
 
 import "./Chat.css";
 
@@ -15,7 +17,6 @@ let userName;
 let IsOpen = true;
 
 
-// eslint-disable-next-line react/prop-types
 const Chat = ({ location }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [loaded, setLoaded] = useState(0);
@@ -27,19 +28,29 @@ const Chat = ({ location }) => {
   const [users, setUsers] = useState("");
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
+  const [modalIsOpen, setIsOpen] = React.useState(false);
 
+
+
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
   const ENDPOINT = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    // eslint-disable-next-line react/prop-types
     const { name, room, room_id, secret } = queryString.parse(location.search);
     socket = io(ENDPOINT);
     socket.emit("join", { name, room_id, secret }, (error) => {
       if (error) {
-        alert(error);
+        alert("Помилка авторизації");
       }
     });
     userName = name;
+    console.log(room);
     setRoom(room);
     setName(name);
 
@@ -59,7 +70,6 @@ const Chat = ({ location }) => {
         ]);
       }
     });
-  // eslint-disable-next-line react/prop-types
   }, [ENDPOINT, location.search]);
 
   useEffect(() => {
@@ -98,7 +108,7 @@ const Chat = ({ location }) => {
     });
 
     socket.on("roomData", ({ users }) => {
-      setUsers(users);
+      setUsers(_.unionBy(users,"name"));
     });
   }, []);
 
@@ -107,17 +117,15 @@ const Chat = ({ location }) => {
       if (IsOpen) {
         IsOpen = false;
 
-        socket.emit("setOpend", {status:false});
+        socket.emit("setOpend", { status: false });
       }
     } else {
       if (!IsOpen) {
         IsOpen = true;
-        socket.emit("setOpend", {status:true});
-
+        socket.emit("setOpend", { status: true });
       }
     }
   });
-
 
   const sendMessage = async (event) => {
     event.preventDefault();
@@ -133,9 +141,13 @@ const Chat = ({ location }) => {
   const sendFile = (/*event*/) => {
     /*  event.persist();*/
     if (fileName) {
-      socket.emit("sendMessage", { message:fileName, messageType, messageDate }, () => {
-        setFileName("");
-      });
+      socket.emit(
+        "sendMessage",
+        { message: fileName, messageType, messageDate },
+        () => {
+          setFileName("");
+        }
+      );
     }
     let audio = document.getElementById("input");
     audio.play();
@@ -155,7 +167,16 @@ const Chat = ({ location }) => {
       ></audio>
 
       <div className="container">
-        <InfoBar room={room} />
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+        
+          contentLabel="Example Modal"
+          ariaHideApp={false}
+        >
+          <TextContainer users={users} closeModal = {closeModal}/>
+        </Modal>
+        <InfoBar room={room} userscount={users.length} openModal={openModal}/>
         <Messages
           messages={messages}
           name={name}
@@ -188,7 +209,6 @@ const Chat = ({ location }) => {
           setMessageType={setMessageType}
         />
       </div>
-      <TextContainer users={users} />
     </div>
   );
 };

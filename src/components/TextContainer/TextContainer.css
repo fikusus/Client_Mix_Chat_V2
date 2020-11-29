@@ -1,16 +1,14 @@
 .textContainer {
   display: flex;
   flex-direction: column;
-  margin-left: 100px;
-  color: white;
-  height: 60%;
+  color: #353535;
   justify-content: space-between;
+  position: relative;
 }
 
 .activeContainer {
   display: flex;
   align-items: center;
-  margin-bottom: 50%;
 }
 
 .activeItem {
@@ -25,6 +23,10 @@
 .textContainer h1 {
   margin-bottom: 0px;
 }
-.textContainer {
-  display: none;
+.ribbon{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  font-style: normal;
+  font-size: 1.5em;
 }
