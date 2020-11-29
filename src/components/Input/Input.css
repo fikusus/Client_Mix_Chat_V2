@@ -1,0 +1,39 @@
+fa, .fas, .far {
+  font-family: FontAwesome !important;
+}
+
+.form {
+  display: flex;
+  border-top: 2px solid #d3d3d3;
+}
+
+.input {
+  border: none;
+  border-radius: 0;
+  padding: 20px ;
+  width: 100%;
+  font-size: 1.2em;
+}
+
+.keyHande{
+  width: 80%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+.fa-paper-plane {
+  font-size: 1.5em;
+  margin: auto 20px auto 10px;
+
+  color: #388e3c;
+}
+
+.fa-paperclip {
+  font-size: 2em;
+  margin: auto 10px auto auto;
+  color: #388e3c;
+}
