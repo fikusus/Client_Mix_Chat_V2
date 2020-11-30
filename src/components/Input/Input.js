@@ -120,21 +120,26 @@ class Input extends Component {
           className="inputFile"
           onChange={this.onChangeHandler}
         ></input>
-        <i
+        <img
+        src={process.env.PUBLIC_URL + '/attach_file-white-36dp.svg'}
+        alt="paperclip"
           style={{ cursor: "pointer" }}
           onClick={(e) => {
             const inputFile = document.querySelector(".inputFile");
             inputFile.click();
           }}
-          className="fa fa-paperclip"
-        ></i>
-        <i
+          className="paperClipButton"
+        />
+
+        <img
+          src={process.env.PUBLIC_URL + '/send-black-36dp.svg'}
+          alt="send"
           style={{ cursor: "pointer" }}
-          className="sendButton far fa-paper-plane"
+          className="sendButton"
           onClick={async (e) => {
             this.sendMessageFunction(e);
           }}
-        ></i>
+        ></img>
       </form>
     );
   }

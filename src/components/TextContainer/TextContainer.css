@@ -23,10 +23,10 @@
 .textContainer h1 {
   margin-bottom: 0px;
 }
-.ribbon{
+
+.closeModalWin{
+  width: 36px;
   position: absolute;
   top: 0px;
   right: 0px;
-  font-style: normal;
-  font-size: 1.5em;
 }

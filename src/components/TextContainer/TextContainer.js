@@ -6,13 +6,15 @@ import "./TextContainer.css";
 const TextContainer = ({ users, closeModal }) => {
   return (
     <div className="textContainer">
-      <i
-        class="fas fa-times ribbon"
+      <img
+        src={process.env.PUBLIC_URL + "/clear-white-36dp.svg"}
+        alt="cross"
+        className="closeModalWin"
         onClick={async (e) => {
           closeModal();
         }}
         style={{ cursor: "pointer" }}
-      ></i>
+      />
       {users ? (
         <div>
           <h1>Онлайн:</h1>
