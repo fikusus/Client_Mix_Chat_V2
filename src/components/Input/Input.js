@@ -6,7 +6,7 @@ var fileInLoadKey = false;
 class Input extends Component {
   async uploadFile(file) {
     const SAS_TOKEN =
-      "?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2021-11-25T19:59:52Z&st=2020-11-25T11:59:52Z&spr=https&sig=FI2Y8dHZgsa%2BoeSlsK9HfSxNX%2F5JVoWtW9Mj0lg7lAg%3D";
+      "?sv=2019-12-12&ss=bfqt&srt=sco&sp=rwdlacupx&se=2021-11-30T16:28:17Z&st=2020-11-30T08:28:17Z&spr=https,http&sig=4ArE7Cljg1Kz%2BL%2BVjbTn9%2FHocXhdOqaqgfRtgh6lehk%3D";
     const sasURL = `https://${process.env.REACT_APP_STORAGE_ACCOUNT_NAME}.blob.core.windows.net/${SAS_TOKEN}`;
 
     const blobServiceClient = new BlobServiceClient(sasURL);
