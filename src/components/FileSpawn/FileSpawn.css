@@ -21,7 +21,12 @@
   display: flex;
   justify-content: flex-end;
   margin-left: 10px;
-  visibility: hidden;
+}
+
+.loading_image{
+  height: 16px;
+  margin-top: 8px;
+    margin-left: 3px;
 }
 
 

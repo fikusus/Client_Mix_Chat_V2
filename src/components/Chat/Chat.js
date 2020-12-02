@@ -50,7 +50,6 @@ const Chat = ({ location }) => {
       }
     });
     userName = name;
-    console.log(room);
     setRoom(room);
     setName(name);
 
@@ -75,7 +74,6 @@ const Chat = ({ location }) => {
   useEffect(() => {
     socket.on("message", async (message) => {
       setMessages((messages) => [...messages, message]);
-      console.log(message.user + " " + userName);
       if (message.user !== userName) {
         let audio = document.getElementById("output");
         audio.play();

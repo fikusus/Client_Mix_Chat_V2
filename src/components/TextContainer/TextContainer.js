@@ -7,7 +7,7 @@ const TextContainer = ({ users, closeModal }) => {
   return (
     <div className="textContainer">
       <img
-        src={process.env.PUBLIC_URL + "/clear-white-36dp.svg"}
+        src={process.env.PUBLIC_URL + "/clear.svg"}
         alt="cross"
         className="closeModalWin"
         onClick={async (e) => {

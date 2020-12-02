@@ -22,16 +22,14 @@ class Input extends Component {
 
     fileInLoadKey = true;
     let type = file.type;
-    const uploadBlobResponse = await blockBlobClient.uploadData(file);
+    await blockBlobClient.uploadData(file);
 
     fileInLoadKey = false;
     if (
       type === "image/png" ||
       type === "image/gif" ||
       type === "image/jpeg" ||
-      type === "image/svg" ||
-      type === "image/webp" ||
-      type === "image/svg+xml"
+      type === "image/webp" 
     ) {
       this.props.setMessageType("image");
     } else {
@@ -49,18 +47,12 @@ class Input extends Component {
     }
     this.props.setSelectedFile(null);
     this.props.setLoaded(0);
-
-    console.log(
-      `Upload block blob ${file.name} successfully`,
-      uploadBlobResponse.clientRequestId
-    );
   }
 
   sendMessageFunction = async (e) => {
     let inputField = document.getElementsByClassName("input");
     this.props.setMessageType("text");
     inputField[0].focus();
-    console.log(inputField);
     this.props.setMessage("");
     this.props.sendMessage(e);
   };
@@ -69,8 +61,7 @@ class Input extends Component {
     this.formatingFile(event.target.files);
   };
 
-
-  formatingFile = async (files) =>{
+  formatingFile = async (files) => {
     if (!fileInLoadKey) {
       if (files[0].size > 52428800) {
         alert("Файл занадто великий(max 50mb)");
@@ -81,14 +72,11 @@ class Input extends Component {
     } else {
       alert("Дочекайся завантаження попереднього файлу");
     }
-  }
-
-
+  };
 
   onKeyboardPressed = (event) => {
     var items = (event.clipboardData || event.originalEvent.clipboardData)
       .items;
-    console.log(JSON.stringify(items)); // will give you the mime types
     for (let index in items) {
       var item = items[index];
       if (item.kind === "file") {
@@ -103,7 +91,7 @@ class Input extends Component {
   render() {
     return (
       <form className="form">
-        <input
+        <textarea
           className="input"
           type="text"
           placeholder="Type a message..."
@@ -121,8 +109,8 @@ class Input extends Component {
           onChange={this.onChangeHandler}
         ></input>
         <img
-        src={process.env.PUBLIC_URL + '/attach_file-white-36dp.svg'}
-        alt="paperclip"
+          src={process.env.PUBLIC_URL + "/attachment.svg"}
+          alt="paperclip"
           style={{ cursor: "pointer" }}
           onClick={(e) => {
             const inputFile = document.querySelector(".inputFile");
@@ -132,7 +120,7 @@ class Input extends Component {
         />
 
         <img
-          src={process.env.PUBLIC_URL + '/send-black-36dp.svg'}
+          src={process.env.PUBLIC_URL + "/send.svg"}
           alt="send"
           style={{ cursor: "pointer" }}
           className="sendButton"

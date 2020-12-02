@@ -1,7 +1,3 @@
-fa, .fas, .far {
-  font-family: FontAwesome !important;
-}
-
 .form {
   display: flex;
   border-top: 2px solid #d3d3d3;
@@ -10,9 +6,11 @@ fa, .fas, .far {
 .input {
   border: none;
   border-radius: 0;
-  padding: 20px ;
+  padding: 20px 20px 5px 20px ;
   width: 100%;
-  font-size: 1.2em;
+  font-size: 1.0em;
+  resize: none;
+  font-family: "Roboto", sans-serif;
 }
 
 .keyHande{
@@ -35,5 +33,4 @@ select:focus {
 .paperClipButton{
   width: 36px;
   margin: auto 10px auto auto;
-  color: #388e3c;
 }
